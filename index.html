@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traffic Lights</title>
+  </head>
+  <!-- 1. I denne oppgaven skal du lage et trafikklys som bytter fra rødt - til rødt og gult og så til 
+grønt ved hjelp av knapper som bytter hvilke sirkler som har farge - og hvilke farge den har.
+
+1. Lag tre sirkler under hverandre, som skal kunne ha en bakgrunnsfarge. 
+Det øverste kan bli rødt, det i midten kan bli gult/oransje og det nederste grønt.
+
+2. Lag 3 knapper - en før rødt lys,
+  en for rødt og gult og en for grønt lys.
+
+3. Bruk funksjon med parameter,
+  CSS klasser og onclick for å få knappene til å endre lysene.
+
+4. Når du har fått til dette kan du utfordre deg selv og 
+forsøke å finne ut hvordan man kan automatisere trafikklyset ved hjelp av setTimeout()
+ -->
+
+  <style>
+.trafficLights{
+width: 210px;
+height: 700px;
+background-color: #4e4c4c;
+border-radius: 5em;
+align-items: center;
+flex-direction: column;
+justify-content: space-around;
+padding: 15px;
+}
+
+.red {
+background-color: red;
+opacity: 50%;
+}
+.yellow{
+background-color: rgb(255, 238, 0);
+opacity: 50%;
+
+}
+.green{
+background-color: green;
+opacity: 50%;
+
+}
+.grey{
+background-color: rgb(0, 0, 0);
+opacity: 50%;
+
+}
+.circle{
+box-shadow: -5px 10px 20px 10px black inset ;
+margin-top: 9px;
+height: 200px;
+width: 200px;
+border-radius: 50%;
+ }
+  </style>
+  
+  <body onload="litTimer()">
+  <div id="app"></div>
+
+    <script>
+//MODEL
+var app = document.getElementById('app') 
+var html = /*HTML*/`
+<div class="trafficLights">
+  <div id="red" class="circle"></div>
+  <div id="yellow"class="circle"></div>
+  <div id="green" class="circle"></div>
+  
+  
+  <br />
+  <button onclick="redLight()" button class="redBtn">red</button>
+  <button onclick="yellowLight()"button class="redBtn">yellow</button>
+  <button onclick="GreenLight()"button class="redBtn">green</button>
+  </div>
+`;
+//VIEW 
+updateView()
+function updateView(){
+
+app.innerHTML = html;
+redLight()
+}
+
+//CONTROLLER
+  function redLight(){
+  document.getElementById('red').classList = "circle red"
+  document.getElementById('yellow').classList = "circle grey"
+  document.getElementById('green').classList = "circle grey"
+  setTimeout(yellowLight,4000);
+  }
+  function yellowLight(){
+  document.getElementById('red').classList = "circle grey"
+  document.getElementById('yellow').classList = "circle yellow"
+  document.getElementById('green').classList = "circle grey"
+ setTimeout(greenLight,4000);
+}
+function greenLight(){
+  document.getElementById('red').classList = "circle grey"
+  document.getElementById('yellow').classList = "circle grey"
+  document.getElementById('green').classList = "circle green"
+  setTimeout(redLight,4000);  
+}
+
+    </script>
+  </body>
+</html>
